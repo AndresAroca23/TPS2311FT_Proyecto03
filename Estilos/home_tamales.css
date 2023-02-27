@@ -1,0 +1,73 @@
+body{
+    background-size: cover;
+    background-image: url(../Imágenes/background_cover.jpg);
+    background-position: center center no-repeat;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: 10em;
+}
+
+
+.logo{
+    background-size: cover !important; 
+    width: 200px !important;
+    height: 120px !important;
+}
+
+button{ 
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+    border: 2px solid green !important;
+    cursor: pointer !important;
+}
+
+a{ 
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+    border: 2px solid green !important;
+    cursor: pointer !important;
+}
+
+.titleTamal{
+    position: relative;
+    top: 30px;
+}
+
+.margin{
+    margin: 30px;
+}
+
+.contenidoLogoEmpresa{
+    border-radius: 47px;
+    width: 350px;
+    border: 2px solid green;
+    text-align: center;
+}
+
+.productos{
+    border: 2px solid green;
+    background: #A7F996;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.contenedorImgProducto{
+    display: inline-flex; 
+    align-items: center;  
+}
+
+.espaciadoIMGProducto{
+    margin: 10px;
+    text-align: center;
+    
+}
+
+.textoproducto{
+    font-weight: 500;
+    text-align: center;
+    border-radius: 10px;
+    border: 2px solid green;
+    padding: 10px;
+}
+ 
