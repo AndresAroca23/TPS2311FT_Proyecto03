@@ -1,3 +1,7 @@
+#menu{
+    background-image: url(../Imágenes/background_cover.jpg);
+}
+
 body{
     background-size: cover;
     background-image: url(../Imágenes/background_cover.jpg);

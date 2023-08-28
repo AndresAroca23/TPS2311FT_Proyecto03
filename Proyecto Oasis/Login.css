@@ -3,6 +3,11 @@
 
 }
 
+#body{
+    background: #ffff00;
+    color: #000000;
+}
+
 #footer a{
     color: white;
 }

@@ -1,6 +1,6 @@
-*{
-    margin: 0;
-    padding: 0;
+#menu{
+    left: 300px;
+    background-image: url(../Imágenes/background_cover.jpg);
 }
 
 body{
