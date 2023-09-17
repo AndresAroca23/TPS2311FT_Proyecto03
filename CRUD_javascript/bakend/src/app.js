@@ -1,10 +1,6 @@
-const express = require('express');
-const myql2 = require('mysql2');
 
-const app = express();
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+
 
 // html
 
@@ -30,13 +26,7 @@ app.post('/', (req, res)=>{
 
 // === db ===
 
-const connection = myql2.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'toor',
-    database: 'oasis',
- 
- });
+
  
  connection.connect((err) => { 
      if(err) throw err;
