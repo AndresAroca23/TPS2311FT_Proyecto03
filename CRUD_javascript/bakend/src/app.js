@@ -43,6 +43,14 @@ const connection = myql2.createConnection({
     console.log ('BD conectada');
 });
 
+const querySql = 'SHOW TABLES;';
+
+connection.query(querySql, (err, res) =>{
+    if (err) throw err;
+    console.log('respuesta sql', res );
+});
+
+
 app.listen(3000, ()=>{
     console.log('Servidor encendido');
 });
