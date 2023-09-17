@@ -1,32 +1,4 @@
 
-
-
-
-// html
-
-app.get('/:name/:id', (req, res) => {
-    const{ name ,id } = req.params
-
-    res.send(`${name}: ${id}`);
-});
-
-app.post('/', (req, res)=>{
-    const {email, password} = req.body;
-    res.send(`${email}: ${password}`);
-});
-
-app.post('/', (req, res)=>{
-    res.send('Peticion PUT');
-});
-
-app.post('/', (req, res)=>{
-    res.send('Peticion DELETE');
-});
-
-
-// === db ===
-
-
  
  connection.connect((err) => { 
      if(err) throw err;
