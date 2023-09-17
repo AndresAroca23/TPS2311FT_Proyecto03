@@ -1,4 +1,5 @@
 const express = require('express');
+const myql2 = require('mysql2');
 
 const app = express();
 
@@ -24,6 +25,22 @@ app.post('/', (req, res)=>{
 
 app.post('/', (req, res)=>{
     res.send('Peticion DELETE');
+});
+
+
+// === db ===
+
+const connection = myql2.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'toor',
+    database: 'oasis',
+ 
+ });
+
+ connection.connect((err) => { 
+    if(err) throw err;
+    console.log ('BD conectada');
 });
 
 app.listen(3000, ()=>{
