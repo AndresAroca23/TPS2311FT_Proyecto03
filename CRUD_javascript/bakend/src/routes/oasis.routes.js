@@ -1,24 +1,19 @@
 const { Router } = require('express');
 
+const { createOasis,
+    readOasis,
+    updateOasis,
+    deleteOasis,
+ } = require('../controllers/oasis.controller');
+
 const router = Router();
 
-router.get('/:name/:id', (req, res) => {
-    const{ name ,id } = req.params
+router.get('/:name/:id', readOasis);
 
-    res.send(`${name}: ${id}`);
-});
+router.post('/', createOasis);
 
-router.post('/', (req, res)=>{
-    const {email, password} = req.body;
-    res.send(`${email}: ${password}`);
-});
+router.post('/', updateOasis);
 
-router.post('/', (req, res)=>{
-    res.send('Peticion PUT');
-});
-
-router.post('/', (req, res)=>{
-    res.send('Peticion DELETE');
-});
+router.post('/', deleteOasis);
 
 module.exports = router;
