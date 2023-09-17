@@ -1,0 +1,33 @@
+#body{
+   align-items: center;
+}
+
+#menu a{
+   font: oblique bold 120% fantasy;
+   color: #706362;
+   
+}
+#bt a{
+   text-decoration: none;
+   color: black;
+}
+
+#bt {
+
+   background-color:#F5F5DC;
+   border: 5px solid #F5F5DC;
+   border-radius: 10px;
+   right: -2000000px;
+}
+
+/* Fin de pagina*/
+#fin_pagina {
+   background-color: #F5F5DC;
+}
+
+#Fin_pagina a{
+   font: oblique bold 120% fantasy;
+   color: #706362;
+   
+}
+/* /Fin de pagina*/
