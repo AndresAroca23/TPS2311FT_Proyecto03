@@ -33,6 +33,11 @@
 #body{
     background: #ffff00;
     color: #000000;
+    
+}
+
+#speakers{
+    background-image: url(../Imágenes/background_cover.jpg);
 }
 
 #fb{
