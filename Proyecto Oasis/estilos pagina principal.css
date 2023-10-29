@@ -1,5 +1,6 @@
 #body{
     align-items: center;
+    background-image: url(../Imágenes/background_cover.jpg);
 }
 
 #menu a{
@@ -18,7 +19,7 @@
 }
 
 
-/* esilo de botones en general ddel body*/
+/* esilo de botones en general del body*/
 #bt a{
     text-decoration: none;
     color: black;
@@ -29,6 +30,7 @@
     background-color:#F5F5DC;
     border: 20px solid #F5F5DC;
     border-radius: 10px;
+    
 }
 
 /* /esilo de botones en general ddel body*/

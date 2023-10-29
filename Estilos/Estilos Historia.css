@@ -1,0 +1,30 @@
+#menu {
+    background-color: #F5F5DC;
+}
+
+#menu a{
+    font: oblique bold 120% fantasy;
+    color: #706362;
+    
+}
+
+#body{
+    background-image: url(../Imágenes/background_cover.jpg);
+}
+
+#H img{
+    width: 900px;
+    right: 30px;
+
+}
+/* Fin de pagina*/
+#fin_pagina {
+    background-color: #F5F5DC;
+}
+
+#Fin_pagina a{
+    font: oblique bold 120% fantasy;
+    color: #706362;
+    
+}
+/* /Fin de pagina*/
