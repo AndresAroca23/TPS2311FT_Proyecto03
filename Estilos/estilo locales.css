@@ -1,0 +1,45 @@
+#menu {
+    background-color: #F5F5DC;
+}
+
+#menu a {
+    font: oblique bold 120% fantasy;
+    color: #706362;
+    text-decoration: none;
+}
+
+#locales a {
+    color: red; /* Cambia el color a tu preferencia */
+    text-decoration: none; /* Elimina el subrayado */
+    font: 120% fantasy;
+}
+
+#locales a:hover {
+    color: blue; /* Cambia el color al pasar el mouse por encima */
+}
+
+#body {
+    background-image: url(../Imágenes/background_cover.jpg);
+}
+
+/* Fin de pagina*/
+#fin_pagina {
+    background-color: #F5F5DC;
+}
+
+#fin_pagina a{
+    font: 120% fantasy;
+    color: #706362;
+    text-decoration: none;
+}
+/* /Fin de pagina*/
+
+#locales img{
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; /* Ajusta el ancho deseado */
+    height: auto; /* El alto se ajuste automatic */
+    border-radius: 2%;
+}
