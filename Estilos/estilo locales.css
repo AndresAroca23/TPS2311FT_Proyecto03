@@ -11,7 +11,9 @@
 #locales a {
     color: red; /* Cambia el color a tu preferencia */
     text-decoration: none; /* Elimina el subrayado */
+
     font: 120% fantasy;
+
 }
 
 #locales a:hover {
@@ -27,6 +29,7 @@
     background-color: #F5F5DC;
 }
 
+<<<<<<< HEAD
 #fin_pagina a{
     font: 120% fantasy;
     color: #706362;
@@ -42,4 +45,20 @@
     width: 600px; /* Ajusta el ancho deseado */
     height: auto; /* El alto se ajuste automatic */
     border-radius: 2%;
+=======
+#Fin_pagina a{
+    font: oblique bold 120% fantasy;
+    color: #706362;
+    
+}
+/* /Fin de pagina*/
+
+#Local img{
+    position: absolute;
+    top: 55%;
+    left: 78%;
+    transform: translate(-50%, -50%);
+    width: 500px; /* Ajusta el ancho deseado */
+    height: auto; /* El alto se ajuste automatic */
+>>>>>>> 06bd560e166c4c51fb233bff686ffcf4599c284d
 }
