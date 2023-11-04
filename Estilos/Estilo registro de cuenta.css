@@ -1,22 +1,22 @@
-#menu {
-    background-color: #F5F5DC;
+#Body{
+    align-items: center;
+    background-image: url(../Imágenes/background_cover.jpg);
 }
 
 #menu a{
     font: oblique bold 120% fantasy;
     color: #706362;
+
+   
     
 }
 
-#body{
-    background-image: url(../Imágenes/background_cover.jpg);
+#Registro{
+    background-color:#ffffff;
+    border: 10px solid #ffffff;
+    border-radius: 10px;
 }
 
-#H img{
-    width: 900px;
-    right: 30px;
-
-}
 /* Fin de pagina*/
 #fin_pagina {
     background-color: #F5F5DC;

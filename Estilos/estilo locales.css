@@ -40,10 +40,10 @@
 
 #locales img{
     position: absolute;
-    top: 44%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 580px; /* Ajusta el ancho deseado */
+    width: 505px; /* Ajusta el ancho deseado */
     height: auto; /* El alto se ajuste automatic */
     border-radius: 2%
 }

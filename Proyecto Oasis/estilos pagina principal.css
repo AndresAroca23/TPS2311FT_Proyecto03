@@ -133,11 +133,13 @@
 /* Fin de pagina*/
 #fin_pagina {
     background-color: #F5F5DC;
+    text-align: center;
 }
 
-#Fin_pagina a{
-    font: oblique bold 120% fantasy;
+
+#fin_pagina a{
+    font: 120% fantasy;
     color: #706362;
-    
+    text-decoration: none;
 }
 /* /Fin de pagina*/

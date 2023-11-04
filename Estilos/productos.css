@@ -48,7 +48,9 @@
 
 /* Tamal Familiar */
 #Tf {
-    left: 20px;
+    position: absolute;
+    top: 24%;
+    right: 50px;
 }
 /* /Tamal Familiar */
 /* Tamal Especial*/
@@ -65,8 +67,9 @@
 
 /* Tamal de lechona*/
 #Tl {
-    left: 375px;
-    top: -363px;
+    position: absolute;
+    top: 100%;
+    right: 390px;
 }
 /* /Tamal de lechona*/
 
@@ -79,19 +82,22 @@
 
 /* Pastel costeño*/
 #Pc {
-    top: -725px;
-    left: 743px;
+    position: absolute;
+    top: 100%;
+    right: 50px;
 }
 /* /Pastel costeño*/
 
 /* Fin de pagina*/
 #fin_pagina {
     background-color: #F5F5DC;
+    text-align: center;
 }
 
-#Fin_pagina a{
-    font: oblique bold 120% fantasy;
+
+#fin_pagina a{
+    font: 120% fantasy;
     color: #706362;
-    
+    text-decoration: none;
 }
 /* /Fin de pagina*/

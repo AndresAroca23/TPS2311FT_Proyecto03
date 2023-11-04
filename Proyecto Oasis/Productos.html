@@ -51,25 +51,27 @@
               <img src="../Imágenes/muestra_de_tamal_familiar.jpg" class="card-img-top" alt="Tamal1">
               <div class="card-body">
                 <h5 class="card-title">Tamales Familiares</h5>
+                <p>Tamal con carne molida, comino, cebolla, salsa de chile</p>
                 <div class="Badges mb-2">
                   <span class="badge badge-danger">Descuento 20%</span>
                   <span class="badge badge-success">15.000</span>
                 </div>
-                <p class="card-text"> <button id="fb" type="button" class="btn btn-platzi">Comprar</button></p>
+                <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
               </div>
             </div>
           </div>
           
-          <div id="Te" class="col-md-4 mb-4">
+          <div id="Te" class="col-md-4 mb-2">
             <div class="card" style="width: 18rem;">
               <img src="../Imágenes/muestra_de_tamal.jpg" class="card-img-top" alt="Tamal2">
               <div class="card-body">
                 <h5 class="card-title">Tamal Especial</h5>
+                <p>contiene huevo, una presa de pollo cada uno y un trozo de carne, papa, zanahoria, aji y arveja amarilla </p>
                 <div class="Badges mb-1">
                   <span class="badge badge-danger">Descuento 50%</span>
                   <span class="badge badge-success">30.000</span>
                 </div>
-                <p class="card-text"> <button id="fb" type="button" class="btn btn-platzi">Comprar</button> </p>
+                <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
               </div>
             </div>
           </div>
@@ -79,11 +81,12 @@
               <img src="../Imágenes/muestra de tamal pequeño.jpg" class="card-img-top" alt="Tamal3">
               <div class="card-body">
                 <h5 class="card-title">Tamal Tolimence</h5>
+                <p> contiene pollo, zanahoria, tozos de chicharon, arepa, arveja amarilla</p>
                 <div class="Badges mb-2">
                   <span class="badge badge-danger">Descuento 70%</span>
                   <span class="badge badge-success">14.500</span>
                 </div>
-                <p class="card-text"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></p>
+                <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
               </div>
             </div>
           </div>
@@ -94,11 +97,14 @@
             <img src="../Imágenes/hallaca.jpeg" class="card-img-top" alt="Tamal1">
             <div class="card-body">
               <h5 class="card-title">Hallaca</h5>
+              <p>maíz molido, caldo de gallina, color, guiso de carne de res, cerdo y gallina, 
+                alverjas, zanahoria, papa, cebollín, vino tinto, cebolla, ajo, cilantro, pimiento, 
+                alcaparras, envueltas en hojas ahumadas de plátano.</p>
               <div class="Badges mb-2">
                 <span class="badge badge-danger">Descuento 20%</span>
                 <span class="badge badge-success">15.000</span>
               </div>
-              <p class="card-text"> <button id="fb" type="button" class="btn btn-platzi">Comprar</button></p>
+              <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
             </div>
           </div>
         </div>
@@ -108,11 +114,12 @@
             <img src="../Imágenes/tamal de lechona.jpeg" class="card-img-top" alt="Tamal5">
             <div class="card-body">
               <h5 class="card-title">Tamal de Lechona</h5>
+              <p> contiene arveja amarilla, carne de cerdo, panela, arepa, harina de maiz</p>
               <div class="Badges mb-2">
                 <span class="badge badge-danger">Descuento 50%</span>
                 <span class="badge badge-success">30.000</span>
               </div>
-              <p class="card-text"> <button id="fb" type="button" class="btn btn-platzi">Comprar</button> </p>
+              <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
             </div>
           </div>
         </div>
@@ -122,11 +129,12 @@
             <img src="../Imágenes/pastel costeño.jpg" class="card-img-top" alt="Tamal5">
             <div class="card-body">
               <h5 class="card-title">Pastel</h5>
+              <p></p>
               <div class="Badges mb-2">
                 <span class="badge badge-danger">Descuento 50%</span>
                 <span class="badge badge-success">30.000</span>
               </div>
-              <p class="card-text"> <button id="fb" type="button" class="btn btn-platzi">Comprar</button> </p>
+              <a class="nav-link text-platzi" href="#" data-toggle="modal" data-target="#staticBackdrop"><button id="fb" type="button" class="btn btn-platzi">Comprar</button></a>
             </div>
           </div>
         </div>
@@ -173,6 +181,52 @@
 </footer>
 
 <!--/pie de pagina-->
+
+<!--Detalles pedido-->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Detalles pedido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-row">
+            <div class="form-groups col">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon1">1</span>
+                </div>
+                <form>
+                  <input type="text" placeholder="NOMBRE" aria-describedby="basic-addon1"/>
+                  <span class="input-group-text" id="basic-addon1">2</span>
+                  <p><section><input type="text" placeholder="TELEFONO" aria-describedby="basic-addon1"/></section></p>
+                  <span class="input-group-text" id="basic-addon1">3</span>
+                  <p><section><input type="text" placeholder="DIRECCION" aria-describedby="basic-addon1"/></section></p>
+                  <span class="input-group-text" id="basic-addon1">4</span>
+                  <p><section><input type="number" placeholder="CANTIDAD" aria-describedby="basic-addon1"/></section></p>
+                </form> 
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="alert alert-warning" role="alert">
+          recibiras una llamada para verificar tu pedido
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">comprar</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<!--/Detalles pedido-->
   
   <!-- Optional JavaScript; choose one of the two! -->
   <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
