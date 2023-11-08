@@ -1,0 +1,145 @@
+#body{
+    align-items: center; 
+    background-image: url(../Imagenes/background_cover.jpg);
+}
+
+#menu a{
+    font: oblique bold 120% fantasy;
+    color: #706362;
+    
+}
+
+
+#carousel{
+   width: 900px;
+   height: auto;
+   left: 450px;
+
+
+}
+
+
+/* esilo de botones en general del body*/
+#bt a{
+    text-decoration: none;
+    color: black;
+}
+
+#bt {
+
+    background-color:#F5F5DC;
+    border: 20px solid #F5F5DC;
+    border-radius: 10px;
+    
+}
+
+/* /esilo de botones en general del body*/
+
+/* Productos*/
+
+#Productos {
+    border-radius: 20px;
+}
+
+#Productos p{
+    font: oblique 112% tw cen mt;
+    font-size: xx-large;
+}
+
+#Productos img{
+    width: 290px;
+    right: -240px;
+    float: right;
+    position: absolute;
+    border-radius: 20px;
+    top: 25px;
+}
+
+
+/*/Productos*/
+
+/* Historia*/
+#Historia p{
+    font: oblique 112% tw cen mt;
+    font-size: xx-large;
+    
+}
+
+
+#Historia {
+    left: 334px;
+}
+
+
+#H img{
+    width: 350px;
+    right: 98%;
+    float: right;
+    position: absolute;
+    border: rgb(202, 195, 195) solid;
+    border-radius: 10px;
+    top: 2px;
+}
+
+/* /Historia*/
+
+/* Locales*/
+#Locales p{
+    font: oblique 112% tw cen mt;
+    font-size: xx-large;
+}
+
+#Locales img{
+    width: 100px;
+    right: -240px;
+    float: right;
+    position: absolute;
+    border-radius: 20px;
+    top: 25px;
+}
+
+#L img{
+    width: 200px;
+    right: -180px;
+    float: right;
+    position: absolute;
+    border-radius: 20px;
+    top: 1px;
+}
+/* /Locales*/
+
+/* Empleo*/
+
+#Empleo {
+    left: 200px;
+}
+
+#Empleo p{
+    font: oblique 90% tw cen mt;
+    font-size: xx-large;
+}
+
+#E img{
+    width: 210px;
+    right: 97%;
+    float: right;
+    position: absolute;
+    border: rgb(202, 195, 195) solid;
+    border-radius: 10px;
+    top: 2px;
+}
+/* /Empleo*/
+
+/* Fin de pagina*/
+#fin_pagina {
+    background-color: #F5F5DC;
+    text-align: center;
+}
+
+
+#fin_pagina a{
+    font: 120% fantasy;
+    color: #706362;
+    text-decoration: none;
+}
+/* /Fin de pagina*/
