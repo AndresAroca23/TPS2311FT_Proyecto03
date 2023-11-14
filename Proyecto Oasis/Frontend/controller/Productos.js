@@ -11,7 +11,7 @@ const nf = new Intl.NumberFormat("es-MX");
 (()=>{
     let url = "https://tps2311ft-proyecto03.onrender.com";
 
-    fetch(`${url}`)
+    fetch(`${url}/products`)
     .then((response)=> response.json())
     .then ((data)=> {
         console.log(data);
