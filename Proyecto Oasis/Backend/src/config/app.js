@@ -26,9 +26,6 @@ app.get("/", (req, res)=>{
     res.render("index");
 });
 
-app.get("/productsRender", (req, res)=>{
-    res.render("productos");
-});
 app.get("/compra", (req, res)=>{
     res.render("products");
 });
