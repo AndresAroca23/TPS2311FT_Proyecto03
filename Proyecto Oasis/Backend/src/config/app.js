@@ -29,6 +29,9 @@ app.get("/", (req, res)=>{
 app.get("/productsRender", (req, res)=>{
     res.render("productos");
 });
+app.get("/compra", (req, res)=>{
+    res.render("productos");
+});
 app.get("/home", (req, res)=>{
     res.render("home");
 });
