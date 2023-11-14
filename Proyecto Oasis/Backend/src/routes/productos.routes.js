@@ -1,4 +1,15 @@
 const { Router } = require('express');
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./Backend/src/uploads/");
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + "-" + file.originalname)
+    },
+  });
+  const upload = multer({storage:storage});
+
 
 const {
     getAll,
@@ -9,9 +20,9 @@ const {
 
 const router = Router();
 
-router.post('/', save);
+router.post('/', upload.single("file"), save);
 router.get('/', getAll);
-router.put ('/', update);
+router.put ('/', upload.single("file"), update);
 router.delete ('/', deleteProduct); 
 
 module.exports = router;

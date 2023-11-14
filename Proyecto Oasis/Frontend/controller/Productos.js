@@ -13,36 +13,41 @@ const nf = new Intl.NumberFormat("es-MX");
     fetch(`${url}`)
     .then((response)=> response.json())
     .then ((data)=> {
-        if(data != undefined && data.length > 0){
+        console.log(data);
+        if(data != undefined && data.data.length > 0){
             let products = ``;
             let descuentos = ``; 
 
-            for (let product = 0; product < data.length; product++) {
+            for (let product = 0; product < data.data.length; product++) {
 
-                let conversionDescuento = data[product].Descuentos/100;
-                let valueDescuento = data[product].precio_id*conversionDescuento;
+                let conversionDescuento = data.data[product].Descuentos/100;
+                let valueDescuento = data.data[product].precio_id*conversionDescuento;
 
-                if(data[product].Descuentos != null && data[product].Descuentos != 0){
-                    descuentos  = `<span class="badge badge-danger">Descuento ${data[product].Descuentos} %</span>
-                    <span class="badge badge-warning" style="text-decoration: line-through;">$ ${nf.format(data[product].precio_id)}</span>
-                    <span class="badge badge-success">$ ${nf.format(data[product].precio_id - valueDescuento)}</span>`;
+                if(data.data[product].Descuentos != null && data.data[product].Descuentos != 0){
+                    descuentos  = `<span class="badge badge-danger">Descuento ${data.data[product].Descuentos} %</span>
+                    <span class="badge badge-warning" style="text-decoration: line-through;">$ ${nf.format(data.data[product].precio_id)}</span>
+                    <span class="badge badge-success">$ ${nf.format(data.data[product].precio_id - valueDescuento)}</span>`;
                 }else{
                     descuentos = `
-                    <span class="badge badge-success">$ ${nf.format(data[product].precio_id)}</span>
+                    <span class="badge badge-success">$ ${nf.format(data.data[product].precio_id)}</span>
                     `
                 }
-                
+                let imagenBase64 = "";
+                if (data.data[product].imagen) {
+                    imagenBase64 = `data:image/png;base64,${data.data[product].base64}`
+                }
+
                 products += `
                 <div class="col-md-4 mb-4">
                 <div class="card" style="width: 18rem;">
-                  <img src="../Imagenes/muestra_de_tamal_familiar.jpg" class="card-img-top" alt="Tamal1">
+                  <img src="${imagenBase64}" style="max-height: 150px;" class="card-img-top" alt="Image">
                   <div class="card-body">
-                    <h5 class="card-title">${data[product].names_id}</h5>
-                    <p class="card-text" style="max-height: 60px; overflow-y: scroll;">${data[product].DESCRIPTION == null ? "" : data[product].DESCRIPTION}</p>
+                    <h5 class="card-title">${data.data[product].names_id}</h5>
+                    <p class="card-text" style="max-height: 60px; overflow-y: scroll;">${data.data[product].DESCRIPTION == null ? "" : data.data[product].DESCRIPTION}</p>
                     <div class="Badges mb-2" style="text-align:center;">
                       ${descuentos} 
                     </div>
-                    <button data-toggle="modal" onclick="productSelected(${data[product].id}, ${data[product].precio_id}, ${data[product].Descuentos})" style="width:100%" data-target="#staticBackdrop" type="button" class="btn btn-success btn-lg">Comprar</button>
+                    <button data-toggle="modal" onclick="productSelected(${data.data[product].id}, ${data.data[product].precio_id}, ${data.data[product].Descuentos})" style="width:100%" data-target="#staticBackdrop" type="button" class="btn btn-success btn-lg">Comprar</button>
                   </div>
                 </div>
               </div>

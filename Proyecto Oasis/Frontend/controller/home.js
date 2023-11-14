@@ -9,20 +9,20 @@ let dataUserSelected = {};
     fetch(`${url}/products`)
     .then((response)=> response.json())
     .then ((data)=> {
-        if(data != undefined && data.length > 0){
+        if(data.data != undefined && data.data.length > 0){
             let products = ``;
 
-            for (let product = 0; product < data.length; product++) {
+            for (let product = 0; product < data.data.length; product++) {
                 
                 products += `
                 <tr>
-                <th scope="row">${data[product].id}</th>
-                <td>${data[product].names_id}</td>
-                <td>$ ${nf.format(data[product].precio_id)}</td>
-                <td>${data[product].Descuentos != null ?data[product].Descuentos: 0 }%</td>
+                <th scope="row">${data.data[product].id}</th>
+                <td>${data.data[product].names_id}</td>
+                <td>$ ${nf.format(data.data[product].precio_id)}</td>
+                <td>${data.data[product].Descuentos != null ?data.data[product].Descuentos: 0 }%</td>
                 <td>
-                    <button type="button" class="btn btn-danger" onclick="deleteProductSelected(${data[product].id});" ><i class="fa fa-trash"></i></button>
-                    <button type="button" class="btn btn-warning" onclick="typeActionProduct('update'); productSelected(${data[product].id},'${data[product].names_id}', ${data[product].precio_id},'${data[product].DESCRIPTION}',${data[product].Descuentos}, '${data[product].imagen}');" data-toggle="modal" data-target="#modalEditProduct"><i class="fa fa-pencil"></i></button>
+                    <button type="button" class="btn btn-danger" onclick="deleteProductSelected(${data.data[product].id});" ><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-warning" onclick="typeActionProduct('update'); productSelected(${data.data[product].id},'${data.data[product].names_id}', ${data.data[product].precio_id},'${data.data[product].DESCRIPTION}',${data.data[product].Descuentos}, '${data.data[product].imagen}');" data-toggle="modal" data-target="#modalEditProduct"><i class="fa fa-pencil"></i></button>
                 </td>
               </tr>  
                 `; 
@@ -52,7 +52,7 @@ let dataUserSelected = {};
                 <td>${data.data[user].email}</td>
                 <td>${data.data[user].telefono }</td>
                 <td style="padding:5px;">
-                <button type="button" class="btn btn-danger" ${disabled} onclick="deleteUser(${data.data[user].id});" ><i class="fa fa-trash"></i></button>
+                <button type="button" class="btn btn-danger" ${disabled} onclick="deleteUserSelected(${data.data[user].id});" ><i class="fa fa-trash"></i></button>
                 <button type="button" class="btn btn-warning" ${disabled} data-toggle="modal" onclick="typeActionUser('update'); userSelected(${data.data[user].id},'${data.data[user].login}', '${data.data[user].email}', '${data.data[user].telefono}', ${data.data[user].idRol});" data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
                 </td>
               </tr>  
@@ -85,21 +85,26 @@ const productSelected = function(id, nombrePoduct, precio, description, descuent
 }
 
 const updateProduct = async function(){
-    // let image = document.getElementById("imagenProduct_id").files[0];
-    // dataProductSelected.image = image != undefined ?  image : dataProductSelected.image;
+    let file = document.getElementById("imagenProduct_id").files[0];
+
     dataProductSelected.names_id = document.getElementById("nombreProduct_id").value;
     dataProductSelected.precio_id = document.getElementById("precioProduct_id").value;
     dataProductSelected.DESCRIPTION = document.getElementById("descripcionProduct_id").value;
     dataProductSelected.Descuentos = document.getElementById("descuentoProduct_id").value == "" ? '0' : document.getElementById("descuentoProduct_id").value;
+    
+    const formData = new FormData();
+    formData.append("id",dataProductSelected.id);
+    formData.append("names_id",dataProductSelected.names_id);
+    formData.append("precio_id",dataProductSelected.precio_id);
+    formData.append("DESCRIPTION",dataProductSelected.DESCRIPTION);
+    formData.append("Descuentos",dataProductSelected.Descuentos);
+    formData.append("imagen", dataProductSelected.imagen);
+    formData.append("file",file != undefined ? file : "");
 
     let url = "http://127.0.0.1:3000";
     await fetch(`${url}/products`,{
         method:"PUT",
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataProductSelected)
+        body: formData
     })
     .then((response)=> response.json())
     .then ((data)=> {
@@ -136,8 +141,8 @@ const addProduct = async function(){
     });
 }
 
-const deleteProductSelected = async function(id){
-    console.log(id);
+const deleteProduct = async function(id){
+
     let url = "http://127.0.0.1:3000";
     await fetch(`${url}/products`,{
         method:"DELETE",
@@ -168,32 +173,6 @@ const userSelected =  function(id, login, email, telefono, idRol){
     document.getElementById("correoUsuario_id").value = dataUserSelected.email;
     document.getElementById("telefonoUsuario_id").value = dataUserSelected.telefono;
    }
-
-const loadTypesRol = function(){
-    let url = "http://127.0.0.1:3000";
-    fetch(`${url}/rol`)
-    .then((response)=> response.json())
-    .then ((data)=> {
-        if (data != undefined && data.status == "Success") {
-            console.log(data);
-            let optionsSelect = ``;
-            let count = 0;
-            for (let rol = 0; rol < data.data.length; rol++) {
-                count++;
-                if(parseInt(dataUserSelected.idRol) == count){
-                    optionsSelect += `
-                    <option value="${count}" selected="selected">${data.data[rol].description}</option>
-                    `;
-                }else{
-                    optionsSelect += `
-                    <option value="${count}" selected="selected">${data.data[rol].description}</option>
-                    `;
-                }               
-            }
-            document.querySelector("#idRolUsuario").innerHTML = optionsSelect;
-        }  
-    });
-}
 
 const updateUser = async function(){
     dataUserSelected.login = document.getElementById("nombreUsuario_id").value;
@@ -246,7 +225,6 @@ const addUser = async function(){
     });
 }
 
-
 const deleteUser = async function(id){
     let url = "http://127.0.0.1:3000";
     await fetch(`${url}/user`,{
@@ -261,6 +239,32 @@ const deleteUser = async function(id){
     .then ((data)=> {
         if (data != undefined && data.status == "Success") {
             location.reload();
+        }  
+    });
+}
+
+const loadTypesRol = function(){
+    let url = "http://127.0.0.1:3000";
+    fetch(`${url}/rol`)
+    .then((response)=> response.json())
+    .then ((data)=> {
+        if (data != undefined && data.status == "Success") {
+            console.log(data);
+            let optionsSelect = ``;
+            let count = 0;
+            for (let rol = 0; rol < data.data.length; rol++) {
+                count++;
+                if(parseInt(dataUserSelected.idRol) == count){
+                    optionsSelect += `
+                    <option value="${count}" selected="selected">${data.data[rol].description}</option>
+                    `;
+                }else{
+                    optionsSelect += `
+                    <option value="${count}" selected="selected">${data.data[rol].description}</option>
+                    `;
+                }               
+            }
+            document.querySelector("#idRolUsuario").innerHTML = optionsSelect;
         }  
     });
 }
