@@ -7,7 +7,7 @@ const login = async function (){
         nickname: document.getElementById("emailUser_id").value
     }
 
-    await fetch(`${url}/login`,{
+    await fetch(`${url}/user/login`,{
         method:"POST",
         headers:{
             'Accept': 'application/json',

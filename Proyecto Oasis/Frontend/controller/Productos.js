@@ -8,10 +8,10 @@ let url = "https://tps2311ft-proyecto03.onrender.com";
 
 const nf = new Intl.NumberFormat("es-MX");
 
-(()=>{
+(async ()=>{
     let url = "https://tps2311ft-proyecto03.onrender.com";
 
-    fetch(`${url}/products`)
+    await fetch(`${url}/products`)
     .then((response)=> response.json())
     .then ((data)=> {
         console.log(data);
