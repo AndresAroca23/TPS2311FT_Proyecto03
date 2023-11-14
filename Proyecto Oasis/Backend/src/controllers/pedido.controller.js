@@ -10,11 +10,9 @@ const save = (req,res) => {
     const createQuery = `INSERT INTO compras_id(name, direccion, telefono, cantidad, products_id, fecha_compra, total_compra) VALUES(?,?,?,?,?,?,?)`;
 
     const query = mysql2.format(createQuery, [name, direccion, telefono, cantidad, products_id, today, total_compra]);
-    database.connect();
     database.query(query, (err, result)=>{
         if (err) throw err;
         res.send({ message: 'pedido creado'});
-        database.end();
     });
 };
 
