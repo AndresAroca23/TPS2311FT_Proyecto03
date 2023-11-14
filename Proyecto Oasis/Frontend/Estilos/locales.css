@@ -11,7 +11,6 @@
 #locales a {
     color: red; /* Cambia el color a tu preferencia */
     text-decoration: none; /* Elimina el subrayado */
-
     font: 120% fantasy;
 
 }
@@ -21,7 +20,7 @@
 }
 
 #body {
-    background-image: url(../Imágenes/background_cover.jpg);
+    background-image: url(../Imagenes/background_cover.jpg);
 }
 
 /* Fin de pagina*/
@@ -38,12 +37,10 @@
 }
 /* /Fin de pagina*/
 
-#locales img{
+.imagen{
     position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 10%;
     width: 505px; /* Ajusta el ancho deseado */
-    height: auto; /* El alto se ajuste automatic */
+    max-height: 540px !important; /* El alto se ajuste automatic */
     border-radius: 2%
 }

@@ -1,10 +1,12 @@
 const nf = new Intl.NumberFormat("es-MX");
 let dataProductSelected;
 let dataUserSelected = {};
+let url = "https://tps2311ft-proyecto03.onrender.com";
 
 
 (()=>{
-    let url = "http://127.0.0.1:3000";
+   
+    let url = "https://tps2311ft-proyecto03.onrender.com";
 
     fetch(`${url}/products`)
     .then((response)=> response.json())
@@ -65,7 +67,8 @@ let dataUserSelected = {};
 })();
 
 const cerrarSesion = function(){
-    location.href = "../view/Oasiss.html";
+    localStorage.clear();
+    location.href = "/";
 }
 
 const productSelected = function(id, nombrePoduct, precio, description, descuentos, imagen){
@@ -101,7 +104,6 @@ const updateProduct = async function(){
     formData.append("imagen", dataProductSelected.imagen);
     formData.append("file",file != undefined ? file : "");
 
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/products`,{
         method:"PUT",
         body: formData
@@ -124,7 +126,6 @@ const addProduct = async function(){
         imagen: ""
      }
      
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/products`,{
         method:"POST",
         headers:{
@@ -143,7 +144,6 @@ const addProduct = async function(){
 
 const deleteProduct = async function(id){
 
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/products`,{
         method:"DELETE",
         headers:{
@@ -180,7 +180,6 @@ const updateUser = async function(){
     dataUserSelected.telefono = document.getElementById("telefonoUsuario_id").value; 
     dataUserSelected.idRol = document.getElementById("idRolUsuario").value;
 
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/user`,{
         method:"PUT",
         headers:{
@@ -208,7 +207,6 @@ const addUser = async function(){
         idRol: document.getElementById("idRolUsuario").value
      }  
         
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/user`,{
         method:"POST",
         headers:{
@@ -226,7 +224,6 @@ const addUser = async function(){
 }
 
 const deleteUser = async function(id){
-    let url = "http://127.0.0.1:3000";
     await fetch(`${url}/user`,{
         method:"DELETE",
         headers:{
@@ -244,7 +241,6 @@ const deleteUser = async function(id){
 }
 
 const loadTypesRol = function(){
-    let url = "http://127.0.0.1:3000";
     fetch(`${url}/rol`)
     .then((response)=> response.json())
     .then ((data)=> {

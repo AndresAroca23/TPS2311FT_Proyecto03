@@ -3,12 +3,13 @@ let priceProductSelected = 0;
 let discountProductSelected = 0;
 let valueTotalPrice = 0;
 let cantidad = 0;
+let url = "https://tps2311ft-proyecto03.onrender.com";
 
 
 const nf = new Intl.NumberFormat("es-MX");
 
 (()=>{
-    let url = "http://127.0.0.1:3000/products"
+    let url = "https://tps2311ft-proyecto03.onrender.com";
 
     fetch(`${url}`)
     .then((response)=> response.json())
@@ -94,7 +95,7 @@ const BuyProductSelected = async function(){
         fecha_compra: Date.now(), 
         total_compra: valueTotalPrice
     }
-    await fetch(`http://127.0.0.1:3000/pedido`,{
+    await fetch(`${url}/pedido`,{
         method:"POST",
         headers:{
             'Accept': 'application/json',
@@ -112,5 +113,4 @@ const BuyProductSelected = async function(){
         alert(data.message);
     });
 }
-
 

@@ -1,6 +1,6 @@
 const login = async function (){
 
-    let url = "http://127.0.0.1:3000/user"
+    let url = "https://tps2311ft-proyecto03.onrender.com";
 
     let data = {
         password: document.getElementById("passwordUser_id").value, 
@@ -21,7 +21,7 @@ const login = async function (){
             document.getElementById("emailUser_id").value = "";
             document.getElementById("passwordUser_id").value = "";
             localStorage.setItem("dataUserStorage", JSON.stringify(data.data))
-            location.href = "../view/home.html";
+            location.href = "/home";
         }else{
             alert(data.message);
         }

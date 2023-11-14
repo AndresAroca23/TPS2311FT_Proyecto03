@@ -14,7 +14,7 @@ const getAll = (req, res) => {
     const readQuery = `SELECT * FROM productos `;
 
     const query = mysql2.format(readQuery);
-
+    database.connect();
     database.query(query, async (err, result) => {
         if (err) throw err;
         if (result !== undefined) {
@@ -31,8 +31,10 @@ const getAll = (req, res) => {
                 listData.push(data);
             }
             res.json({data:listData});
+            database.end();
         } else {
             res.json({ message: 'Usuario no encontrado' });
+            database.end();
         }
     });
 };
