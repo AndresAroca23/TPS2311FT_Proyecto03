@@ -30,7 +30,7 @@ app.get("/productsRender", (req, res)=>{
     res.render("productos");
 });
 app.get("/compra", (req, res)=>{
-    res.render("productos");
+    res.render("products");
 });
 app.get("/home", (req, res)=>{
     res.render("home");
