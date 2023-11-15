@@ -78,7 +78,7 @@ const cerrarSesion = function () {
 const productSelected = function (id, names_id, precio, description, descuentos, imagen) {
     dataProductSelected = {
         id,
-        names_id: nombrePoduct,
+        names_id,
         precio_id: precio,
         DESCRIPTION: description == "null" ? "" : description,
         Descuentos: descuentos == "null" ? 0 : descuentos,
