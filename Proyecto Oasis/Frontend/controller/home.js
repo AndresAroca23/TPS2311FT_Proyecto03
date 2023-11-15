@@ -170,7 +170,7 @@ const deleteProduct = async function (id) {
         });
 }
 
-const userSelected = function (id, login, email, telefono, idRol) {
+const userSelected = async function (id, login, email, telefono, idRol) {
     dataUserSelected = {
         id,
         login,
@@ -178,7 +178,7 @@ const userSelected = function (id, login, email, telefono, idRol) {
         telefono,
         idRol
     }
-    loadTypesRol();
+    await loadTypesRol();
     document.getElementById("nombreUsuario_id").value = dataUserSelected.login;
     document.getElementById("correoUsuario_id").value = dataUserSelected.email;
     document.getElementById("telefonoUsuario_id").value = dataUserSelected.telefono;
@@ -259,8 +259,8 @@ const deleteUser = async function (id) {
         });
 }
 
-const loadTypesRol = function () {
-    fetch(`${url}/rol`)
+const loadTypesRol = async function () {
+    await fetch(`${url}/rol`)
         .then((response) => response.json())
         .then((data) => {
             if (data != undefined && data.status == "Success") {
