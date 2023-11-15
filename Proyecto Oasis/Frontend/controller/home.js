@@ -75,7 +75,7 @@ const cerrarSesion = function () {
     location.href = "/";
 }
 
-const productSelected = function (id, nombrePoduct, precio, description, descuentos, imagen) {
+const productSelected = function (id, names_id, precio, description, descuentos, imagen) {
     dataProductSelected = {
         id,
         names_id: nombrePoduct,
@@ -99,6 +99,9 @@ const updateProduct = async function () {
     dataProductSelected.DESCRIPTION = document.getElementById("descripcionProduct_id").value;
     dataProductSelected.Descuentos = document.getElementById("descuentoProduct_id").value == "" ? '0' : document.getElementById("descuentoProduct_id").value;
 
+    if (dataProductSelected.names_id == "" || dataProductSelected.precio_id == "" || dataProductSelected.DESCRIPTION == "") {
+        alertSwetAlert("Diligenciar todos los datos del formulario");
+    } else {
     const formData = new FormData();
     formData.append("id", dataProductSelected.id);
     formData.append("names_id", dataProductSelected.names_id);
@@ -118,6 +121,7 @@ const updateProduct = async function () {
                 location.reload();
             }
         });
+    }
 }
 
 const addProduct = async function () {
@@ -139,8 +143,7 @@ const addProduct = async function () {
     formData.append("imagen", "");
     formData.append("file", file != undefined ? file : "");
 
-    if (dataProductSelected.names_id == "" || dataProductSelected.precio_id == "" || dataProductSelected.DESCRIPTION == "" ||
-        dataProductSelected.Descuentos == "" || dataProductSelected.Descuentos == 0 || file == undefined) {
+    if (dataProductSelected.names_id == "" || dataProductSelected.precio_id == "" || dataProductSelected.DESCRIPTION == "" || file == undefined) {
         alertSwetAlert("Diligenciar todos los datos del formulario");
     } else {
         await fetch(`${url}/products`, {

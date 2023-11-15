@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const hbs = require('express-handlebars');
 const ejs = require('ejs');
 
 const path = require('path');

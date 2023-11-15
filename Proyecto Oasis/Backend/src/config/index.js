@@ -1,5 +1,4 @@
 const app = require('./app');
-const database = require("../config/database");
 
 const main = async() => {
 app.listen(3000, ()=>{
