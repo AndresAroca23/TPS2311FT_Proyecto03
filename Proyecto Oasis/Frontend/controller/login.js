@@ -23,7 +23,7 @@ const login = async function (){
             localStorage.setItem("dataUserStorage", JSON.stringify(data.data))
             location.href = "/home";
         }else{
-            alert(data.message);
+            alertSwetAlert(data.message);
         }
     })
 }

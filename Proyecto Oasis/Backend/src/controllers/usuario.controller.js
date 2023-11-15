@@ -1,87 +1,64 @@
 const database = require('../config/database');
-const mysql2 = require('mysql2');
 
-const login = (req, res) => {
-
-    const { password, nickname } = req.body;
-    const readQuery= `SELECT * FROM usuario WHERE password= ? and (nickname = ? or email = ?);`;
-
-    const query = mysql2.format(readQuery, [password, nickname,nickname]);
-
-    database.query(query, (err, result)=>{
-        if (err) throw err;
-        if (result[0] !== undefined){
-            res.json({ data: result[0], status: "Success"});   
-        }else{
-            res.json({ message: 'Las credenciales no coinciden', status: "Error"}); 
-        }
-    });
-};
-
-const getAll = (req, res) => {
+const login = async (req, res) => {
 
     const { password, nickname } = req.body;
-    const readQuery= `SELECT * FROM usuario;`;
+    const query = `SELECT * FROM usuario WHERE password= ? and (nickname = ? or email = ?);`;
 
-    const query = mysql2.format(readQuery, [password, nickname,nickname]);
+    const { result } = await database.query(query, [password, nickname, nickname]);
 
-    database.query(query, (err, result)=>{
-        if (err) throw err;
-        if (result !== undefined){
-            res.json({ data: result, status: "Success"});   
-        }else{
-            res.json({ message: 'Error al consultar la información', status: "Error"}); 
-        }
-    });
+    if (result[0] !== undefined) {
+        res.json({ data: result[0], status: "Success" });
+    } else {
+        res.json({ message: 'Las credenciales no coinciden', status: "Error" });
+    }
 };
 
-const update = (req,res) => {
-    const {id, login, email, telefono, idRol} = req.body;
-    const readQuery= `UPDATE usuario SET login = ?, email = ?, telefono = ?, idRol = ? Where id = ?;`;
-
-    const query = mysql2.format (readQuery, [login, email, telefono, idRol,id] );
-
-    database.query(query, (err, result)=>{
-        if (err) throw err;
-        if (result !== undefined){
-            res.json({result, status: "Success"});   
-        }else{
-            res.json({ message: 'No se logro actualizar el registro', status: "Error"}); 
-        }
-    });
+const getAll = async (req, res) => {
+    const result = await database.query("SELECT * FROM usuario");
+    res.json({ data: result[0], status: "Success" });
 };
 
-const save = (req,res) => {
-    const { login, password, nickname, email, telefono, idRol} = req.body; 
+const update = async (req, res) => {
+    const { id, login, email, telefono, idRol } = req.body;
+    const query = `UPDATE usuario SET login = ?, email = ?, telefono = ?, idRol = ? Where id = ?;`;
+
+    const [result] = await database.query(query, [login, email, telefono, idRol, id]);
+    if (result.affectedRows > 0) {
+        res.json({ result, status: "Success" });
+    } else {
+        res.json({ message: 'No se logro actualizar el registro', status: "Error" });
+    }
+};
+
+const save = async (req, res) => {
+    const { login, password, nickname, email, telefono, idRol } = req.body;
+    const query = `INSERT INTO Usuario(login, password, nickname, email, telefono, idRol) VALUES(?,?,?,?,?,?)`;
+
+    const [result] = await database.query(query, [login, password, nickname, email, telefono, idRol])
+    if (result.affectedRows > 0) {
+        res.send({ message: 'usuario creado', status: "Success" });
+    }
+    else {
+        res.send({ message: 'No se logro crear el usuario', status: "Error" });
+    }
+};
+
+const deleteUser = async (req, res) => {
+    const { id } = req.body;
+    const query = `Delete from usuario Where id = ?;`;
+    const [result] = await database.query(query, [id]);
     
-    const createQuery = `INSERT INTO Usuario(login, password, nickname, email, telefono, idRol) VALUES(?,?,?,?,?,?)`;
+    if (result !== undefined) {
+        res.json({ result, status: "Success" });
+    } else {
+        res.json({ message: 'No se logro eliminar el registro', status: "Error" });
+    }
 
-    const query = mysql2.format(createQuery, [login, password, nickname, email, telefono, idRol]);
-
-    database.query(query, (err, result)=>{
-        if (err) throw err;
-        res.send({ message: 'usuario creado', status: "Success"});
-    });
 };
 
-const deleteUser = (req,res) => {
-    const {id} = req.body;
-    const readQuery= `Delete from usuario Where id = ?;`;
-
-    const query = mysql2.format (readQuery, [id] );
-
-    database.query(query, (err, result)=>{
-        if (err) throw err;
-        if (result !== undefined){
-            res.json({result, status: "Success"});   
-        }else{
-            res.json({ message: 'No se logro eliminar el registro', status: "Error"}); 
-        }
-    });
-};
-
-module.exports= {
-    login ,
+module.exports = {
+    login,
     getAll,
     update,
     deleteUser,

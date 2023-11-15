@@ -14,7 +14,6 @@ const nf = new Intl.NumberFormat("es-MX");
     await fetch(`${url}/products`)
     .then((response)=> response.json())
     .then ((data)=> {
-        console.log(data);
         if(data != undefined && data.data.length > 0){
             let products = ``;
             let descuentos = ``; 
@@ -95,22 +94,27 @@ const BuyProductSelected = async function(){
         fecha_compra: Date.now(), 
         total_compra: valueTotalPrice
     }
-    await fetch(`${url}/pedido`,{
-        method:"POST",
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-    .then((response)=> response.json())
-    .then((data)=> {
-        document.getElementById("nombre_id").value = "";
-        document.getElementById("telefono_id").value = "";
-        document.getElementById("direccion_id").value = ""; 
-        document.getElementById("cantidad_id").value = ""; 
-        document.getElementById("totalPriceProduct").value = ""; 
-        alert(data.message);
-    });
+
+    if (data.name == undefined || data.direccion == undefined || data.telefono == undefined || data.cantidad == 0 || data.cantidad == undefined) {
+        alertSwetAlert("Diligencie todos los datos del formulario");
+    }else{
+        await fetch(`${url}/pedido`,{
+            method:"POST",
+            headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then((response)=> response.json())
+        .then((data)=> {
+            document.getElementById("nombre_id").value = "";
+            document.getElementById("telefono_id").value = "";
+            document.getElementById("direccion_id").value = ""; 
+            document.getElementById("cantidad_id").value = ""; 
+            document.getElementById("totalPriceProduct").value = ""; 
+            alertSwetAlert(data.message);
+        });
+    }
 }
 
