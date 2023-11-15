@@ -5,64 +5,68 @@ let url = "https://tps2311ft-proyecto03.onrender.com";
 
 
 (async () => {
+    let dataUserStorage = JSON.parse(localStorage.getItem("dataUserStorage"));
+    if (dataUserStorage == undefined) {
+        alertSwetAlert("Cierre sesion y vuelva a ingresar");
+    } else {
+        let url = "https://tps2311ft-proyecto03.onrender.com";
 
-    let url = "https://tps2311ft-proyecto03.onrender.com";
+        await fetch(`${url}/products`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.data != undefined && data.data.length > 0) {
+                    let products = ``;
 
-    await fetch(`${url}/products`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.data != undefined && data.data.length > 0) {
-                let products = ``;
+                    for (let product = 0; product < data.data.length; product++) {
 
-                for (let product = 0; product < data.data.length; product++) {
-
-                    products += `
-                <tr>
-                <th scope="row">${data.data[product].id}</th>
-                <td>${data.data[product].names_id}</td>
-                <td>$ ${nf.format(data.data[product].precio_id)}</td>
-                <td>${data.data[product].Descuentos != null ? data.data[product].Descuentos : 0}%</td>
-                <td>
-                    <button type="button" class="btn btn-danger" onclick="deleteProductSelected(${data.data[product].id});" ><i class="fa fa-trash"></i></button>
-                    <button type="button" class="btn btn-warning" onclick="typeActionProduct('update'); productSelected(${data.data[product].id},'${data.data[product].names_id}', ${data.data[product].precio_id},'${data.data[product].DESCRIPTION}',${data.data[product].Descuentos}, '${data.data[product].imagen}');" data-toggle="modal" data-target="#modalEditProduct"><i class="fa fa-pencil"></i></button>
-                </td>
-              </tr>  
-                `;
+                        products += `
+                    <tr>
+                    <th scope="row">${data.data[product].id}</th>
+                    <td>${data.data[product].names_id}</td>
+                    <td>$ ${nf.format(data.data[product].precio_id)}</td>
+                    <td>${data.data[product].Descuentos != null ? data.data[product].Descuentos : 0}%</td>
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="deleteProductSelected(${data.data[product].id});" ><i class="fa fa-trash"></i></button>
+                        <button type="button" class="btn btn-warning" onclick="typeActionProduct('update'); productSelected(${data.data[product].id},'${data.data[product].names_id}', ${data.data[product].precio_id},'${data.data[product].DESCRIPTION}',${data.data[product].Descuentos}, '${data.data[product].imagen}');" data-toggle="modal" data-target="#modalEditProduct"><i class="fa fa-pencil"></i></button>
+                    </td>
+                  </tr>  
+                    `;
+                    }
+                    document.querySelector(".listadoProducto").innerHTML = products;
                 }
-                document.querySelector(".listadoProducto").innerHTML = products;
-            }
-        });
+            });
 
-   await fetch(`${url}/user`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data != undefined && data.data.length > 0) {
-                let users = ``;
-                let disabled = "";
-                let dataUserStorage = JSON.parse(localStorage.getItem("dataUserStorage"));
+        await fetch(`${url}/user`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data != undefined && data.data.length > 0) {
+                    let users = ``;
+                    let disabled = "";
+                    let dataUserStorage = JSON.parse(localStorage.getItem("dataUserStorage"));
 
-                if (dataUserStorage.idRol != 1) {
-                    disabled = "disabled";
-                    document.getElementById("btnAddUserModal").setAttribute("disabled", "");
+                    if (dataUserStorage.idRol != 1) {
+                        disabled = "disabled";
+                        document.getElementById("btnAddUserModal").setAttribute("disabled", "");
+                    }
+                    for (let user = 0; user < data.data.length; user++) {
+
+                        users += `
+                    <tr>
+                    <th scope="row">${data.data[user].id}</th>
+                    <td>${data.data[user].login}</td>
+                    <td>${data.data[user].email}</td>
+                    <td>${data.data[user].telefono}</td>
+                    <td style="padding:5px;">
+                    <button type="button" class="btn btn-danger" ${disabled} onclick="deleteUserSelected(${data.data[user].id});" ><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-warning" ${disabled} data-toggle="modal" onclick="typeActionUser('update'); userSelected(${data.data[user].id},'${data.data[user].login}', '${data.data[user].email}', '${data.data[user].telefono}', ${data.data[user].idRol});" data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
+                    </td>
+                  </tr>  
+                    `;
+                    }
+                    document.querySelector(".listadoUsuario").innerHTML = users;
                 }
-                for (let user = 0; user < data.data.length; user++) {
-
-                    users += `
-                <tr>
-                <th scope="row">${data.data[user].id}</th>
-                <td>${data.data[user].login}</td>
-                <td>${data.data[user].email}</td>
-                <td>${data.data[user].telefono}</td>
-                <td style="padding:5px;">
-                <button type="button" class="btn btn-danger" ${disabled} onclick="deleteUserSelected(${data.data[user].id});" ><i class="fa fa-trash"></i></button>
-                <button type="button" class="btn btn-warning" ${disabled} data-toggle="modal" onclick="typeActionUser('update'); userSelected(${data.data[user].id},'${data.data[user].login}', '${data.data[user].email}', '${data.data[user].telefono}', ${data.data[user].idRol});" data-target="#modalEditUser"><i class="fa fa-pencil"></i></button>
-                </td>
-              </tr>  
-                `;
-                }
-                document.querySelector(".listadoUsuario").innerHTML = users;
-            }
-        })
+            })
+    }
 
 })();
 
@@ -108,12 +112,12 @@ const updateProduct = async function () {
         method: "PUT",
         body: formData
     })
-    .then((response) => response.json())
-    .then((data) => {
-        if (data != undefined && data.status == "Success") {
-            location.reload();
-        }
-    });
+        .then((response) => response.json())
+        .then((data) => {
+            if (data != undefined && data.status == "Success") {
+                location.reload();
+            }
+        });
 }
 
 const addProduct = async function () {
@@ -135,20 +139,20 @@ const addProduct = async function () {
     formData.append("imagen", "");
     formData.append("file", file != undefined ? file : "");
 
-    if(dataProductSelected.names_id == "" || dataProductSelected.precio_id == "" || dataProductSelected.DESCRIPTION == "" || 
-    dataProductSelected.Descuentos == "" || dataProductSelected.Descuentos == 0 || file == undefined){
+    if (dataProductSelected.names_id == "" || dataProductSelected.precio_id == "" || dataProductSelected.DESCRIPTION == "" ||
+        dataProductSelected.Descuentos == "" || dataProductSelected.Descuentos == 0 || file == undefined) {
         alertSwetAlert("Diligenciar todos los datos del formulario");
-    }else{
+    } else {
         await fetch(`${url}/products`, {
             method: "POST",
             body: formData
         })
-        .then((response) => response.json())
-        .then((data) => {
-           if (data != undefined && data.status == "Success") {
-                location.reload();
-            }
-        });
+            .then((response) => response.json())
+            .then((data) => {
+                if (data != undefined && data.status == "Success") {
+                    location.reload();
+                }
+            });
     }
 }
 
@@ -264,18 +268,18 @@ const loadTypesRol = async function () {
         .then((response) => response.json())
         .then((data) => {
             if (data != undefined && data.status == "Success") {
-                console.log(data);
                 let optionsSelect = ``;
                 let count = 0;
                 for (let rol = 0; rol < data.data.length; rol++) {
                     count++;
+                    
                     if (parseInt(dataUserSelected.idRol) == count) {
                         optionsSelect += `
                     <option value="${count}" selected="selected">${data.data[rol].description}</option>
                     `;
                     } else {
                         optionsSelect += `
-                    <option value="${count}" selected="selected">${data.data[rol].description}</option>
+                    <option value="${count}" >${data.data[rol].description}</option>
                     `;
                     }
                 }

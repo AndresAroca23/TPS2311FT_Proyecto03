@@ -24,7 +24,6 @@ const getAll = async (req, res) => {
             data.imagen = result[0][index].imagen;
             data.Descuentos = result[0][index].Descuentos;
             data.base64 = await imageToBase64(data.imagen);
-            console.log(data);
             listData.push(data);
         }
         res.json({data:listData});   
