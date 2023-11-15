@@ -5,8 +5,7 @@ const login = async (req, res) => {
     const { password, nickname } = req.body;
     const query = `SELECT * FROM usuario WHERE password= ? and (nickname = ? or email = ?);`;
 
-    const { result } = await database.query(query, [password, nickname, nickname]);
-
+    const  [result]  = await database.query(query, [password, nickname, nickname]);
     if (result[0] !== undefined) {
         res.json({ data: result[0], status: "Success" });
     } else {
