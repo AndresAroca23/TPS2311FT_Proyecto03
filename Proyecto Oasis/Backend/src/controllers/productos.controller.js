@@ -73,8 +73,21 @@ const save = async(req, res) => {
 
     const { names_id, precio_id, DESCRIPTION, Descuentos, imagen } = req.body;
 
+    let newImage = "";
+    if (req.file) {
+        if (imagen) {
+            fs.unlink(imagen, () => {
+                console.log("Eliminado");
+            }, (err) => {
+                console.log("No se encontro la imagen", imagen);
+            });
+        }
+        newImage = `./${req.file.path.replace(/\\/g, "/")}`;
+    } else {
+        newImage = imagen;
+    }
     const query = `INSERT INTO productos(names_id, precio_id, DESCRIPTION, Descuentos, imagen) VALUES(?,?,?,?,?)`;
-    const [result] = await database.query(query,[names_id, precio_id, DESCRIPTION, Descuentos, imagen]);
+    const [result] = await database.query(query,[names_id, precio_id, DESCRIPTION, Descuentos, newImage]);
     if (result.affectedRows > 0) {
         res.json({ result, message:'producto creado',  status: "Success" });
     } else {

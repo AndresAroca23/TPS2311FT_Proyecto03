@@ -47,7 +47,7 @@ const nf = new Intl.NumberFormat("es-MX");
                     <div class="Badges mb-2" style="text-align:center;">
                       ${descuentos} 
                     </div>
-                    <button data-toggle="modal" onclick="productSelected(${data.data[product].id}, ${data.data[product].precio_id}, ${data.data[product].Descuentos})" style="width:100%" data-target="#staticBackdrop" type="button" class="btn btn-success btn-lg">Comprar</button>
+                    <button data-toggle="modal" onclick="productSelected(${data.data[product].id}, ${data.data[product].precio_id}, ${data.data[product].Descuentos})" style="width:100%" data-target="#modalPedido" type="button" class="btn btn-success btn-lg">Comprar</button>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@ const BuyProductSelected = async function(){
         total_compra: valueTotalPrice
     }
 
-    if (data.name == undefined || data.direccion == undefined || data.telefono == undefined || data.cantidad == 0 || data.cantidad == undefined) {
+    if (data.name == "" || data.direccion == "" || data.telefono == "" || data.cantidad == 0 || data.cantidad == undefined || data.cantidad == "") {
         alertSwetAlert("Diligencie todos los datos del formulario");
     }else{
         await fetch(`${url}/pedido`,{

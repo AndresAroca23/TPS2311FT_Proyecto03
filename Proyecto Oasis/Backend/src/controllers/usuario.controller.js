@@ -32,7 +32,7 @@ const update = async (req, res) => {
 
 const save = async (req, res) => {
     const { login, password, nickname, email, telefono, idRol } = req.body;
-    const query = `INSERT INTO Usuario(login, password, nickname, email, telefono, idRol) VALUES(?,?,?,?,?,?)`;
+    const query = `INSERT INTO usuario(login, password, nickname, email, telefono, idRol) VALUES(?,?,?,?,?,?)`;
 
     const [result] = await database.query(query, [login, password, nickname, email, telefono, idRol])
     if (result.affectedRows > 0) {
